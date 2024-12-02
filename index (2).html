@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CM VIP MOD</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #dbefff, #ffffff);
+            text-align: center;
+        }
+        /* Header Styling */
+        .header {
+            background: linear-gradient(to bottom, #89c4ff, #65aaff);
+            color: #ffffff;
+            font-size: 28px;
+            font-weight: bold;
+            padding: 15px 0;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+            border-radius: 0 0 30px 30px;
+        }
+        .header span {
+            display: inline-block;
+            background: #b3e0ff;
+            color: #000000;
+            font-size: 24px;
+            font-weight: bold;
+            padding: 10px 50px;
+            border-radius: 20px;
+            text-shadow: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .container {
+            margin: 20px auto;
+            max-width: 400px;
+            background: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        .title {
+            font-size: 20px;
+            color: #333;
+            font-weight: bold;
+        }
+        .box {
+            background: #e8f4ff;
+            border-radius: 8px;
+            margin: 10px 0;
+            padding: 10px;
+            font-size: 16px;
+            color: #333;
+        }
+        .timer {
+            font-size: 24px;
+            font-weight: bold;
+            color: #007bff;
+        }
+        .history {
+            margin-top: 15px;
+            font-size: 14px;
+        }
+        .history-item {
+            background: #e8f4ff;
+            border-radius: 8px;
+            margin: 5px 0;
+            padding: 10px;
+            font-size: 16px;
+            color: #333;
+            text-align: left;
+        }
+        .btn {
+            background: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            margin: 10px 5px;
+            cursor: pointer;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+        }
+        .btn:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <span>CM VIP MOD</span>
+    </div>
+    <div class="container">
+        <div class="title">CM VIP SEC SERVER V2</div>
+        <div class="box">
+            <strong></strong> <span id="period">Loading...</span>
+        </div>
+        <div class="box">
+            <strong>:</strong> <span id="result">Loading...</span>
+        </div>
+        <div class="box timer">
+            <strong>Timer:</strong> <span id="timer">Loading...</span>
+        </div>
+        <div class="title">History</div>
+        <div class="history" id="history"></div>
+    </div>
+
+    <script>
+        const historyElement = document.getElementById("history");
+        const periodElement = document.getElementById("");
+        const resultElement = document.getElementById("");
+        const timerElement = document.getElementById("timer");
+
+        let lastPeriod = "";
+
+        function generateResult() {
+            return Math.random() > 0.5 ? "BIG" : "SMALL";
+        }
+
+        function updatePeriodAndTimer() {
+            const now = new Date();
+            const seconds = now.getUTCSeconds();
+            const remainingSeconds = 30 - (seconds % 30);
+            const minutes = now.getUTCMinutes();
+            const totalMinutes = now.getUTCHours() * 60 + minutes;
+            const periodNumber = `${now.getUTCFullYear()}${String(now.getUTCMonth() + 1).padStart(2, "0")}${String(now.getUTCDate()).padStart(2, "0")}1000${totalMinutes * 2 + Math.floor(seconds / 30) + 1}`;
+
+            timerElement.textContent = `00:${String(remainingSeconds).padStart(2, "0")}`;
+
+            if (periodNumber !== lastPeriod) {
+                lastPeriod = periodNumber;
+                const result = generateResult();
+                periodElement.textContent = periodNumber;
+                resultElement.textContent = result;
+
+                const historyItem = document.createElement("div");
+                historyItem.className = "history-item";
+                historyItem.textContent = `Period: ${periodNumber} - Result: ${result}`;
+                historyElement.prepend(historyItem);
+            }
+        }
+
+        setInterval(updatePeriodAndTimer, 1000);
+    </script>
+</body>
+</html>
